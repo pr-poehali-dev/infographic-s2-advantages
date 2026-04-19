@@ -164,8 +164,8 @@ const Index = () => {
             </div>
           </div>
 
-          {/* ГЕОГРАФИЯ — полноширинная, за padding */}
-          <div style={{ marginLeft: "-44px", marginRight: "-44px", marginBottom: "16px", background: "rgba(74,158,255,0.05)", borderTop: "1px solid rgba(74,158,255,0.18)", borderBottom: "1px solid rgba(74,158,255,0.18)" }}>
+          {/* ГЕОГРАФИЯ — полноширинная без padding, до самого края */}
+          <div style={{ marginLeft: "-44px", marginRight: "-44px", background: "rgba(74,158,255,0.05)", borderTop: "1px solid rgba(74,158,255,0.18)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 44px 4px" }}>
               <Icon name="MapPin" fallback="Circle" size={12} style={{ color: "#4a9eff" }} />
               <div style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#4a9eff", fontWeight: 600 }}>
@@ -175,29 +175,27 @@ const Index = () => {
               <div style={{ fontSize: "10px", color: "var(--s2-text-dim)" }}>вся Россия · от производителя</div>
             </div>
 
-            {/* SVG полная ширина */}
-            <div style={{ width: "100%", height: "180px" }}>
+            {/* SVG карта — максимальная высота */}
+            <div style={{ width: "100%", height: "240px" }}>
               <svg viewBox="0 0 200 78" style={{ width: "100%", height: "100%", display: "block" }} preserveAspectRatio="xMidYMid meet">
 
                 {/* Контур России */}
                 <path
                   d="M14,30 L20,24 L28,20 L36,17 L44,16 L52,14 L60,13 L68,14 L76,13 L86,14 L96,13 L108,15 L118,16 L128,17 L138,18 L148,20 L158,22 L166,25 L174,28 L180,32 L184,37 L186,43 L184,49 L180,54 L176,58 L178,64 L174,70 L166,73 L156,74 L148,72 L142,76 L134,76 L124,74 L116,76 L108,74 L98,76 L88,74 L78,72 L68,70 L58,68 L50,66 L44,68 L36,70 L28,68 L22,64 L18,58 L14,52 L12,44 L12,38 Z"
-                  fill="rgba(74,158,255,0.08)"
-                  stroke="rgba(74,158,255,0.3)"
-                  strokeWidth="0.7"
+                  fill="rgba(74,158,255,0.09)"
+                  stroke="rgba(74,158,255,0.32)"
+                  strokeWidth="0.6"
                 />
-                {/* Камчатка */}
                 <path d="M178,52 L182,56 L185,62 L184,68 L180,70 L178,64 Z" fill="rgba(74,158,255,0.05)" stroke="rgba(74,158,255,0.2)" strokeWidth="0.5" />
-                {/* Калининград квадрат */}
                 <rect x="7" y="37" width="5" height="4" rx="0.5" fill="rgba(74,158,255,0.1)" stroke="rgba(74,158,255,0.28)" strokeWidth="0.5" />
 
                 {/* Линии поставок из Москвы (68,38) */}
                 {mapCities.filter(c => !c.main).map((city, i) => (
                   <line key={i} x1="68" y1="38"
                     x2={city.x} y2={city.y}
-                    stroke={city.special ? "rgba(229,57,53,0.3)" : "rgba(74,158,255,0.18)"}
-                    strokeWidth={city.special ? "0.9" : "0.6"}
-                    strokeDasharray="2.5 2"
+                    stroke={city.special ? "rgba(229,57,53,0.35)" : "rgba(74,158,255,0.2)"}
+                    strokeWidth={city.special ? "1" : "0.6"}
+                    strokeDasharray={city.special ? "none" : "2.5 2"}
                   />
                 ))}
 
@@ -207,18 +205,18 @@ const Index = () => {
                   const isSpecial = city.special;
                   const dotColor = isMain ? "#e8c547" : isSpecial ? "#e53935" : "#4a9eff";
                   const textColor = isMain ? "#e8c547" : isSpecial ? "#ff6b6b" : "rgba(240,242,245,0.84)";
-                  const dotR = isMain ? 1.8 : isSpecial ? 1.6 : 1.3;
+                  const dotR = isMain ? 2 : isSpecial ? 1.8 : 1.3;
 
                   return (
                     <g key={i}>
-                      {isMain && <circle cx={city.x} cy={city.y} r={4} fill="rgba(232,197,71,0.18)" />}
-                      {isMain && <circle cx={city.x} cy={city.y} r={5.5} fill="none" stroke="rgba(232,197,71,0.28)" strokeWidth="0.6" />}
-                      {isSpecial && <circle cx={city.x} cy={city.y} r={3} fill="rgba(229,57,53,0.15)" />}
-                      <circle cx={city.x} cy={city.y} r={dotR} fill={dotColor} opacity={0.92} />
+                      {isMain && <circle cx={city.x} cy={city.y} r={4.5} fill="rgba(232,197,71,0.18)" />}
+                      {isMain && <circle cx={city.x} cy={city.y} r={6} fill="none" stroke="rgba(232,197,71,0.28)" strokeWidth="0.6" />}
+                      {isSpecial && <circle cx={city.x} cy={city.y} r={3.5} fill="rgba(229,57,53,0.15)" />}
+                      <circle cx={city.x} cy={city.y} r={dotR} fill={dotColor} opacity={0.95} />
                       <text
                         x={city.x}
-                        y={city.y - 3}
-                        fontSize={isMain ? "4.5" : isSpecial ? "4.2" : "3.6"}
+                        y={city.y - 3.5}
+                        fontSize={isMain ? "5" : isSpecial ? "4.5" : "3.8"}
                         fill={textColor}
                         textAnchor={city.anchor}
                         fontFamily="'IBM Plex Sans', sans-serif"
@@ -230,55 +228,35 @@ const Index = () => {
                   );
                 })}
 
+                {/* Стрелка "Производство" к Н.Новгороду (82,36) */}
+                {/* Выноска снизу-слева от точки */}
+                <line x1="70" y1="52" x2="80" y2="38.5"
+                  stroke="#e53935" strokeWidth="0.8"
+                  markerEnd="url(#arrowRed)"
+                />
+                {/* Текст выноски */}
+                <text x="68" y="56" fontSize="4" fill="#ff6b6b" fontFamily="'IBM Plex Sans', sans-serif" fontWeight="700" textAnchor="middle">
+                  ПРОИЗВОДСТВО
+                </text>
+
+                {/* Маркер стрелки */}
+                <defs>
+                  <marker id="arrowRed" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto">
+                    <path d="M0,0 L4,2 L0,4 Z" fill="#e53935" />
+                  </marker>
+                </defs>
+
                 {/* Легенда */}
                 <g>
-                  <circle cx="8" cy="72" r="1.4" fill="#e8c547" />
-                  <text x="11" y="73.5" fontSize="3" fill="rgba(240,242,245,0.5)" fontFamily="'IBM Plex Sans', sans-serif">Центр</text>
-                  <circle cx="30" cy="72" r="1.3" fill="#e53935" />
-                  <text x="33" y="73.5" fontSize="3" fill="rgba(240,242,245,0.5)" fontFamily="'IBM Plex Sans', sans-serif">Производство</text>
-                  <circle cx="62" cy="72" r="1.3" fill="#4a9eff" />
-                  <text x="65" y="73.5" fontSize="3" fill="rgba(240,242,245,0.5)" fontFamily="'IBM Plex Sans', sans-serif">Поставки</text>
+                  <circle cx="100" cy="74" r="1.4" fill="#e8c547" />
+                  <text x="103" y="75.5" fontSize="3.2" fill="rgba(240,242,245,0.5)" fontFamily="'IBM Plex Sans', sans-serif">Москва</text>
+                  <circle cx="122" cy="74" r="1.3" fill="#e53935" />
+                  <text x="125" y="75.5" fontSize="3.2" fill="rgba(240,242,245,0.5)" fontFamily="'IBM Plex Sans', sans-serif">Производство</text>
+                  <circle cx="154" cy="74" r="1.3" fill="#4a9eff" />
+                  <text x="157" y="75.5" fontSize="3.2" fill="rgba(240,242,245,0.5)" fontFamily="'IBM Plex Sans', sans-serif">Поставки</text>
                 </g>
               </svg>
             </div>
-          </div>
-
-          {/* ФУТЕР */}
-          <div style={{ paddingTop: "12px", borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", minWidth: 0 }}>
-
-            {/* Лого + бренд */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: 0, flexShrink: 1 }}>
-              <img src={logoUrl} alt="Shell Tech ABX" style={{ width: "40px", height: "40px", flexShrink: 0, objectFit: "contain", borderRadius: "6px", background: "#000", padding: "3px" }} />
-              <div style={{ minWidth: 0 }}>
-                <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "16px", fontWeight: 700, color: "var(--s2-text)", letterSpacing: "0.04em", lineHeight: 1, whiteSpace: "nowrap" }}>
-                  SHELL TECH <span style={{ color: "var(--s2-accent)" }}>ABX</span>
-                </div>
-                <div style={{ fontSize: "9px", color: "var(--s2-text-dim)", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "3px", whiteSpace: "nowrap" }}>
-                  Абразив · Россия
-                </div>
-              </div>
-            </div>
-
-            {/* Центр */}
-            <div style={{ textAlign: "center", flexShrink: 0, padding: "0 8px" }}>
-              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "20px", fontWeight: 700, color: "var(--s2-accent)", lineHeight: 1, letterSpacing: "0.05em" }}>
-                2025
-              </div>
-              <div style={{ fontSize: "8px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--s2-text-dim)", marginTop: "3px", whiteSpace: "nowrap" }}>
-                Собств. производство
-              </div>
-            </div>
-
-            {/* Сертификаты */}
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", flexShrink: 0 }}>
-              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "12px", fontWeight: 600, color: "var(--s2-text-dim)", letterSpacing: "0.06em", whiteSpace: "nowrap" }}>
-                ГОСТ · ISO 9001
-              </div>
-              <div style={{ fontSize: "9px", color: "var(--s2-accent)", border: "1px solid rgba(232,197,71,0.35)", padding: "2px 7px", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
-                Сделано в России
-              </div>
-            </div>
-
           </div>
 
         </div>
