@@ -39,16 +39,16 @@ const advantages = [
   {
     icon: "Award",
     title: "Стабильное качество",
-    desc: "Твёрдость 3,5–4 по Моосу. Постоянный состав от партии к партии.",
+    desc: "Твёрдость 2,5–3,5 по Моосу. Постоянный состав от партии к партии.",
     color: "#4a9eff",
   },
 ];
 
 const specs = [
   { label: "Размер фракции", value: "1,0 – 1,5 мм", unit: "", bar: 75 },
-  { label: "Твёрдость по Моосу", value: "3,5 – 4,0", unit: "", bar: 40 },
+  { label: "Твёрдость по Моосу", value: "2,5 – 3,5", unit: "", bar: 35 },
   { label: "Плотность насыпная", value: "600 – 700", unit: "кг/м³", bar: 65 },
-  { label: "Влажность", value: "≤ 8", unit: "%", bar: 8 },
+  { label: "Влажность", value: "≤ 12", unit: "%", bar: 12 },
   { label: "Свободный кремний", value: "0", unit: "%", bar: 0 },
   { label: "Переиспользование", value: "3+", unit: "цикл.", bar: 50 },
 ];
@@ -155,7 +155,7 @@ const Index = () => {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2px", background: "rgba(232,197,71,0.15)", marginBottom: "28px" }}>
             {[
               { val: "1–1,5", unit: "мм", label: "Фракция" },
-              { val: "3,5–4", unit: "Моос", label: "Твёрдость" },
+              { val: "2,5–3,5", unit: "Моос", label: "Твёрдость" },
               { val: "0%", unit: "", label: "Кремний" },
               { val: "3+", unit: "цикл.", label: "Ресурс" },
             ].map((s, i) => (
@@ -172,12 +172,12 @@ const Index = () => {
           {/* ПРИМЕНЕНИЕ — карточки с фото */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "8px", marginBottom: "28px", flex: "0 0 auto" }}>
             {useCases.map((uc, i) => (
-              <div key={i} style={{ position: "relative", overflow: "hidden", height: "140px" }}>
-                <img src={uc.img} alt={uc.title} style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.6) saturate(0.7)" }} />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,12,14,0.95) 0%, transparent 55%)" }} />
-                <div style={{ position: "absolute", bottom: "10px", left: "12px", right: "12px" }}>
-                  <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "13px", fontWeight: 600, color: "var(--s2-text)", letterSpacing: "0.04em" }}>{uc.title}</div>
-                  <div style={{ fontSize: "10px", color: "var(--s2-text-dim)", marginTop: "2px", lineHeight: 1.3 }}>{uc.desc}</div>
+              <div key={i} style={{ position: "relative", overflow: "hidden", height: "190px" }}>
+                <img src={uc.img} alt={uc.title} style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.65) saturate(0.75)" }} />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,12,14,0.97) 0%, rgba(10,12,14,0.2) 55%, transparent 100%)" }} />
+                <div style={{ position: "absolute", bottom: "12px", left: "14px", right: "14px" }}>
+                  <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "15px", fontWeight: 600, color: "var(--s2-text)", letterSpacing: "0.04em", marginBottom: "4px" }}>{uc.title}</div>
+                  <div style={{ fontSize: "11px", color: "var(--s2-text-dim)", lineHeight: 1.4 }}>{uc.desc}</div>
                 </div>
               </div>
             ))}
@@ -202,6 +202,42 @@ const Index = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* ГЕОГРАФИЯ ПОСТАВОК */}
+          <div style={{ marginTop: "20px", padding: "16px 18px", background: "rgba(74,158,255,0.07)", border: "1px solid rgba(74,158,255,0.2)", position: "relative" }}>
+            <div style={{ position: "absolute", top: 0, left: 0, width: "3px", height: "100%", background: "#4a9eff" }} />
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
+              <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#4a9eff" }}>
+                🚚 География поставок
+              </div>
+              <div style={{ flex: 1, height: "1px", background: "rgba(74,158,255,0.2)" }} />
+              <div style={{ fontSize: "10px", color: "var(--s2-text-dim)" }}>вся Россия · от производителя</div>
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              {[
+                "Москва", "СПб", "Краснодар", "Ростов-на-Дону",
+                "Екатеринбург", "Новосибирск", "Казань", "Нижний Новгород",
+                "Воронеж", "Самара", "Уфа", "Владивосток",
+              ].map((city) => (
+                <div
+                  key={city}
+                  style={{
+                    fontSize: "10px",
+                    color: "var(--s2-text-dim)",
+                    background: "rgba(74,158,255,0.08)",
+                    border: "1px solid rgba(74,158,255,0.18)",
+                    padding: "3px 8px",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {city}
+                </div>
+              ))}
+              <div style={{ fontSize: "10px", color: "#4a9eff", padding: "3px 8px", border: "1px solid rgba(74,158,255,0.35)", background: "rgba(74,158,255,0.12)" }}>
+                + другие регионы
+              </div>
             </div>
           </div>
 
