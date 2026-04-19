@@ -244,36 +244,41 @@ const Index = () => {
           </div>
 
           {/* ФУТЕР */}
-          <div style={{ paddingTop: "14px", borderTop: "1px solid rgba(255,255,255,0.08)", display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", gap: "16px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-              <img src={logoUrl} alt="Shell Tech ABX" style={{ width: "60px", height: "60px", objectFit: "contain", borderRadius: "8px", background: "#000", padding: "4px" }} />
-              <div>
-                <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "22px", fontWeight: 700, color: "var(--s2-text)", letterSpacing: "0.06em", lineHeight: 1 }}>
+          <div style={{ paddingTop: "12px", borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", minWidth: 0 }}>
+
+            {/* Лого + бренд */}
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: 0, flexShrink: 1 }}>
+              <img src={logoUrl} alt="Shell Tech ABX" style={{ width: "40px", height: "40px", flexShrink: 0, objectFit: "contain", borderRadius: "6px", background: "#000", padding: "3px" }} />
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "16px", fontWeight: 700, color: "var(--s2-text)", letterSpacing: "0.04em", lineHeight: 1, whiteSpace: "nowrap" }}>
                   SHELL TECH <span style={{ color: "var(--s2-accent)" }}>ABX</span>
                 </div>
-                <div style={{ fontSize: "10px", color: "var(--s2-text-dim)", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "4px" }}>
+                <div style={{ fontSize: "9px", color: "var(--s2-text-dim)", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: "3px", whiteSpace: "nowrap" }}>
                   Абразив · Россия
                 </div>
               </div>
             </div>
 
-            <div style={{ textAlign: "center", padding: "0 16px" }}>
-              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "28px", fontWeight: 700, color: "var(--s2-accent)", lineHeight: 1, letterSpacing: "0.06em" }}>
+            {/* Центр */}
+            <div style={{ textAlign: "center", flexShrink: 0, padding: "0 8px" }}>
+              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "20px", fontWeight: 700, color: "var(--s2-accent)", lineHeight: 1, letterSpacing: "0.05em" }}>
                 2025
               </div>
-              <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--s2-text-dim)", marginTop: "5px", whiteSpace: "nowrap" }}>
-                Собственное производство
+              <div style={{ fontSize: "8px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--s2-text-dim)", marginTop: "3px", whiteSpace: "nowrap" }}>
+                Собств. производство
               </div>
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "6px" }}>
-              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--s2-text-dim)", letterSpacing: "0.08em" }}>
+            {/* Сертификаты */}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", flexShrink: 0 }}>
+              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "12px", fontWeight: 600, color: "var(--s2-text-dim)", letterSpacing: "0.06em", whiteSpace: "nowrap" }}>
                 ГОСТ · ISO 9001
               </div>
-              <div style={{ fontSize: "10px", color: "var(--s2-accent)", border: "1px solid rgba(232,197,71,0.35)", padding: "3px 8px", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
-                Россия
+              <div style={{ fontSize: "9px", color: "var(--s2-accent)", border: "1px solid rgba(232,197,71,0.35)", padding: "2px 7px", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
+                Сделано в России
               </div>
             </div>
+
           </div>
 
         </div>
