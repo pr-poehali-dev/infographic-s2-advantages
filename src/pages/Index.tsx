@@ -30,6 +30,7 @@ const useCases = [
 // special: red = Н.Новгород (производство/склад)
 const mapCities = [
   { name: "Калининград", x: 10, y: 37, anchor: "start" as const, special: false },
+  { name: "Мурманск", x: 48, y: 10, anchor: "middle" as const, special: false },
   { name: "СПб", x: 42, y: 24, anchor: "middle" as const, special: false },
   { name: "Москва", x: 68, y: 38, anchor: "middle" as const, main: true, special: false },
   { name: "Н.Новгород", x: 82, y: 36, anchor: "start" as const, special: true },
@@ -38,11 +39,16 @@ const mapCities = [
   { name: "Самара", x: 102, y: 44, anchor: "start" as const, special: false },
   { name: "Ростов", x: 60, y: 61, anchor: "middle" as const, special: false },
   { name: "Краснодар", x: 53, y: 69, anchor: "middle" as const, special: false },
+  { name: "Пермь", x: 116, y: 28, anchor: "start" as const, special: false },
   { name: "Уфа", x: 114, y: 40, anchor: "start" as const, special: false },
   { name: "Екатеринбург", x: 124, y: 31, anchor: "start" as const, special: false },
+  { name: "Челябинск", x: 122, y: 42, anchor: "start" as const, special: false },
+  { name: "Омск", x: 136, y: 37, anchor: "start" as const, special: false },
   { name: "Новосибирск", x: 144, y: 44, anchor: "middle" as const, special: false },
+  { name: "Красноярск", x: 155, y: 38, anchor: "middle" as const, special: false },
+  { name: "Иркутск", x: 163, y: 47, anchor: "middle" as const, special: false },
+  { name: "Хабаровск", x: 176, y: 54, anchor: "end" as const, special: false },
   { name: "Владивосток", x: 175, y: 66, anchor: "end" as const, special: false },
-  { name: "Сахалин", x: 185, y: 54, anchor: "start" as const, special: false },
 ];
 
 const Index = () => {
@@ -228,37 +234,31 @@ const Index = () => {
                   );
                 })}
 
-                {/* Стрелка "Производство" к Н.Новгороду (82,36) */}
-                {/* Выноска снизу-слева от точки */}
-                <line x1="70" y1="52" x2="80" y2="38.5"
-                  stroke="#e53935" strokeWidth="0.8"
-                  markerEnd="url(#arrowRed)"
-                />
-                {/* Текст выноски */}
-                <text x="68" y="56" fontSize="4" fill="#ff6b6b" fontFamily="'IBM Plex Sans', sans-serif" fontWeight="700" textAnchor="middle">
-                  ПРОИЗВОДСТВО
-                </text>
-
-                {/* Маркер стрелки */}
+                {/* Стрелка "Производство" к Н.Новгороду (82,36) — выноска сверху-справа */}
                 <defs>
                   <marker id="arrowRed" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto">
                     <path d="M0,0 L4,2 L0,4 Z" fill="#e53935" />
                   </marker>
                 </defs>
-
-                {/* Легенда */}
-                <g>
-                  <circle cx="100" cy="74" r="1.4" fill="#e8c547" />
-                  <text x="103" y="75.5" fontSize="3.2" fill="rgba(240,242,245,0.5)" fontFamily="'IBM Plex Sans', sans-serif">Москва</text>
-                  <circle cx="122" cy="74" r="1.3" fill="#e53935" />
-                  <text x="125" y="75.5" fontSize="3.2" fill="rgba(240,242,245,0.5)" fontFamily="'IBM Plex Sans', sans-serif">Производство</text>
-                  <circle cx="154" cy="74" r="1.3" fill="#4a9eff" />
-                  <text x="157" y="75.5" fontSize="3.2" fill="rgba(240,242,245,0.5)" fontFamily="'IBM Plex Sans', sans-serif">Поставки</text>
-                </g>
+                <line x1="96" y1="22" x2="83.5" y2="33.5"
+                  stroke="#e53935" strokeWidth="0.8"
+                  markerEnd="url(#arrowRed)"
+                />
+                <text x="98" y="20" fontSize="3.8" fill="#ff6b6b" fontFamily="'IBM Plex Sans', sans-serif" fontWeight="700" textAnchor="start">
+                  ПРОИЗВОДСТВО
+                </text>
               </svg>
             </div>
           </div>
 
+        </div>
+
+        {/* ФУТЕР */}
+        <div style={{ position: "relative", zIndex: 10, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 44px", borderTop: "1px solid rgba(232,197,71,0.12)", background: "rgba(10,12,14,0.7)" }}>
+          <div style={{ fontSize: "10px", color: "var(--s2-text-dim)", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+            shelltechabx.ru · info@shelltechabx.ru
+          </div>
+          <img src={logoUrl} alt="Shell Tech ABX" style={{ width: "36px", height: "36px", objectFit: "contain", borderRadius: "6px", background: "#000", padding: "3px", opacity: 0.85 }} />
         </div>
       </div>
     </div>
