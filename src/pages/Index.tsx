@@ -163,60 +163,88 @@ const Index = () => {
             </div>
           </div>
 
-          {/* ГЕОГРАФИЯ — графическая SVG-карта */}
-          <div style={{ marginBottom: "16px", background: "rgba(74,158,255,0.05)", border: "1px solid rgba(74,158,255,0.18)", padding: "12px 16px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
+          {/* ГЕОГРАФИЯ — полноширинная SVG-карта */}
+          <div style={{ marginBottom: "16px", marginLeft: "-44px", marginRight: "-44px", background: "rgba(74,158,255,0.05)", borderTop: "1px solid rgba(74,158,255,0.18)", borderBottom: "1px solid rgba(74,158,255,0.18)", position: "relative" }}>
+            {/* Заголовок */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 44px 0" }}>
               <Icon name="MapPin" fallback="Circle" size={12} style={{ color: "#4a9eff" }} />
-              <div style={{ fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#4a9eff" }}>
+              <div style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#4a9eff", fontWeight: 600 }}>
                 География поставок
               </div>
-              <div style={{ flex: 1, height: "1px", background: "rgba(74,158,255,0.18)" }} />
-              <div style={{ fontSize: "9px", color: "var(--s2-text-dim)" }}>вся Россия · от производителя</div>
+              <div style={{ flex: 1, height: "1px", background: "rgba(74,158,255,0.2)" }} />
+              <div style={{ fontSize: "10px", color: "var(--s2-text-dim)" }}>вся Россия · от производителя</div>
             </div>
 
-            {/* SVG схематичная карта России */}
-            <div style={{ position: "relative", width: "100%", height: "90px" }}>
+            {/* SVG карта — на всю ширину */}
+            <div style={{ width: "100%", height: "148px", position: "relative" }}>
               <svg
-                viewBox="0 0 100 55"
+                viewBox="0 0 200 90"
                 style={{ width: "100%", height: "100%", display: "block" }}
                 preserveAspectRatio="xMidYMid meet"
               >
-                {/* Схематичный контур России */}
+                {/* Фоновая заливка-подсказка */}
+                <rect x="0" y="0" width="200" height="90" fill="transparent" />
+
+                {/* Схематичный контур России (увеличенный viewBox 0-200) */}
                 <path
-                  d="M8,18 L12,14 L18,12 L24,10 L30,10 L34,8 L40,8 L46,9 L50,8 L56,9 L62,8 L68,10 L74,10 L80,12 L86,13 L90,15 L94,18 L96,22 L95,27 L93,30 L90,33 L92,37 L90,42 L86,45 L80,47 L74,48 L68,46 L64,50 L60,52 L54,50 L50,52 L44,50 L40,48 L36,50 L30,48 L24,46 L20,44 L16,42 L12,38 L10,34 L8,30 L7,25 Z"
-                  fill="rgba(74,158,255,0.06)"
-                  stroke="rgba(74,158,255,0.25)"
-                  strokeWidth="0.5"
+                  d="M14,30 L20,24 L28,20 L36,17 L44,16 L52,14 L60,13 L68,14 L76,13 L86,14 L96,13 L108,15 L118,16 L128,17 L138,18 L148,20 L158,22 L166,25 L174,28 L180,32 L184,37 L186,43 L184,49 L180,54 L176,58 L178,64 L174,70 L166,73 L156,74 L148,72 L142,76 L134,78 L124,76 L116,78 L108,76 L98,78 L88,76 L78,74 L68,72 L58,70 L50,68 L44,70 L36,72 L28,70 L22,66 L18,60 L14,54 L12,46 L12,38 Z"
+                  fill="rgba(74,158,255,0.07)"
+                  stroke="rgba(74,158,255,0.28)"
+                  strokeWidth="0.8"
                 />
-                {/* Пунктирные линии поставок из центра (Москва ~36,22) */}
-                {cities.filter(c => c.name !== "Москва").map((city, i) => (
-                  <line
-                    key={i}
-                    x1="36" y1="22"
-                    x2={city.x} y2={city.y}
-                    stroke="rgba(74,158,255,0.2)"
-                    strokeWidth="0.4"
-                    strokeDasharray="1.5 1.5"
-                  />
+
+                {/* Полуостров Камчатка */}
+                <path d="M178,52 L182,56 L185,62 L184,68 L180,70 L178,64 Z" fill="rgba(74,158,255,0.05)" stroke="rgba(74,158,255,0.2)" strokeWidth="0.6" />
+
+                {/* Калининград */}
+                <rect x="8" y="38" width="4" height="3" rx="0.5" fill="rgba(74,158,255,0.08)" stroke="rgba(74,158,255,0.25)" strokeWidth="0.5" />
+
+                {/* Линии поставок из Москвы (x=68,y=38) */}
+                {[
+                  { x: 42, y: 26 }, { x: 56, y: 44 }, { x: 52, y: 52 },
+                  { x: 80, y: 40 }, { x: 92, y: 36 }, { x: 100, y: 44 },
+                  { x: 116, y: 42 }, { x: 140, y: 46 }, { x: 172, y: 64 },
+                  { x: 10, y: 40 }, { x: 30, y: 56 }, { x: 26, y: 64 },
+                ].map((pt, i) => (
+                  <line key={i} x1="68" y1="38" x2={pt.x} y2={pt.y}
+                    stroke="rgba(74,158,255,0.18)" strokeWidth="0.6" strokeDasharray="2.5 2" />
                 ))}
-                {/* Точки городов */}
-                {cities.map((city, i) => (
+
+                {/* Города */}
+                {[
+                  { name: "Калининград", x: 10, y: 37, anchor: "start" },
+                  { name: "СПб", x: 42, y: 24, anchor: "middle" },
+                  { name: "Москва", x: 68, y: 38, anchor: "middle", main: true },
+                  { name: "Н.Новгород", x: 80, y: 36, anchor: "start" },
+                  { name: "Воронеж", x: 70, y: 49, anchor: "start" },
+                  { name: "Казань", x: 92, y: 34, anchor: "start" },
+                  { name: "Самара", x: 100, y: 44, anchor: "start" },
+                  { name: "Ростов", x: 60, y: 60, anchor: "middle" },
+                  { name: "Краснодар", x: 54, y: 68, anchor: "middle" },
+                  { name: "Уфа", x: 112, y: 40, anchor: "start" },
+                  { name: "Екб", x: 122, y: 32, anchor: "start" },
+                  { name: "Новосибирск", x: 142, y: 44, anchor: "middle" },
+                  { name: "Владивосток", x: 174, y: 66, anchor: "end" },
+                  { name: "Сахалин", x: 185, y: 55, anchor: "start" },
+                ].map((city, i) => (
                   <g key={i}>
-                    <circle
-                      cx={city.x} cy={city.y} r={city.name === "Москва" ? 1.8 : 1.1}
-                      fill={city.name === "Москва" ? "#e8c547" : "#4a9eff"}
-                      opacity={0.9}
-                    />
-                    {city.name === "Москва" && (
-                      <circle cx={city.x} cy={city.y} r={3.5} fill="none" stroke="rgba(232,197,71,0.3)" strokeWidth="0.5" />
+                    {city.main ? (
+                      <>
+                        <circle cx={city.x} cy={city.y} r={2.8} fill="rgba(232,197,71,0.2)" />
+                        <circle cx={city.x} cy={city.y} r={1.8} fill="#e8c547" />
+                        <circle cx={city.x} cy={city.y} r={4.5} fill="none" stroke="rgba(232,197,71,0.35)" strokeWidth="0.7" />
+                      </>
+                    ) : (
+                      <circle cx={city.x} cy={city.y} r={1.4} fill="#4a9eff" opacity={0.85} />
                     )}
                     <text
-                      x={city.x + (city.x > 50 ? -1 : 2)}
-                      y={city.y - 2}
-                      fontSize="2.5"
-                      fill={city.name === "Москва" ? "#e8c547" : "rgba(240,242,245,0.7)"}
-                      textAnchor={city.x > 75 ? "end" : "start"}
+                      x={city.x}
+                      y={city.y - 3.2}
+                      fontSize={city.main ? "4.5" : "3.5"}
+                      fill={city.main ? "#e8c547" : "rgba(240,242,245,0.82)"}
+                      textAnchor={city.anchor as "start" | "middle" | "end"}
                       fontFamily="'IBM Plex Sans', sans-serif"
+                      fontWeight={city.main ? "700" : "400"}
                     >
                       {city.name}
                     </text>
@@ -227,30 +255,37 @@ const Index = () => {
           </div>
 
           {/* ФУТЕР */}
-          <div style={{ paddingTop: "14px", borderTop: "1px solid rgba(255,255,255,0.08)", display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", gap: "12px" }}>
+          <div style={{ paddingTop: "16px", borderTop: "1px solid rgba(255,255,255,0.08)", display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", gap: "16px" }}>
             {/* Левый: лого */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <img src={logoUrl} alt="Shell Tech ABX" style={{ width: "32px", height: "32px", objectFit: "contain", borderRadius: "5px", background: "#000", padding: "2px" }} />
-              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "15px", fontWeight: 700, color: "var(--s2-text)", letterSpacing: "0.06em" }}>
-                SHELL TECH <span style={{ color: "var(--s2-accent)" }}>ABX</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+              <img src={logoUrl} alt="Shell Tech ABX" style={{ width: "60px", height: "60px", objectFit: "contain", borderRadius: "8px", background: "#000", padding: "4px" }} />
+              <div>
+                <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "22px", fontWeight: 700, color: "var(--s2-text)", letterSpacing: "0.06em", lineHeight: 1 }}>
+                  SHELL TECH <span style={{ color: "var(--s2-accent)" }}>ABX</span>
+                </div>
+                <div style={{ fontSize: "10px", color: "var(--s2-text-dim)", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "4px" }}>
+                  Абразив · Россия
+                </div>
               </div>
             </div>
 
             {/* Центр: год + производство */}
-            <div style={{ textAlign: "center" }}>
-              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "18px", fontWeight: 700, color: "var(--s2-accent)", lineHeight: 1, letterSpacing: "0.05em" }}>
+            <div style={{ textAlign: "center", padding: "0 16px" }}>
+              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "28px", fontWeight: 700, color: "var(--s2-accent)", lineHeight: 1, letterSpacing: "0.06em" }}>
                 2025
               </div>
-              <div style={{ fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--s2-text-dim)", marginTop: "3px", whiteSpace: "nowrap" }}>
+              <div style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--s2-text-dim)", marginTop: "5px", whiteSpace: "nowrap" }}>
                 Собственное производство
               </div>
             </div>
 
             {/* Правый: сертификаты */}
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", justifyContent: "flex-end" }}>
-              <div style={{ fontSize: "9px", color: "var(--s2-text-dim)" }}>ГОСТ · ISO 9001</div>
-              <div style={{ fontSize: "9px", color: "var(--s2-accent)", border: "1px solid rgba(232,197,71,0.3)", padding: "2px 7px" }}>
-                Россия
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "6px" }}>
+              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--s2-text-dim)", letterSpacing: "0.1em" }}>
+                ГОСТ · ISO 9001
+              </div>
+              <div style={{ fontSize: "11px", color: "var(--s2-accent)", border: "1px solid rgba(232,197,71,0.35)", padding: "3px 10px", letterSpacing: "0.12em" }}>
+                Сделано в России
               </div>
             </div>
           </div>
