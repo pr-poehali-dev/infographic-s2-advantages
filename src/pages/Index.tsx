@@ -11,14 +11,14 @@ const specs = [
   { label: "Плотность насыпная", value: "600 – 700", unit: "кг/м³", bar: 65 },
   { label: "Влажность", value: "≤ 12", unit: "%", bar: 12 },
   { label: "Свободный кремний", value: "0", unit: "%", bar: 0 },
-  { label: "Переиспользование", value: "3+", unit: "цикл.", bar: 50 },
+  { label: "Экологичность", value: "100%", unit: "bio", bar: 100 },
 ];
 
 const benefits = [
   { icon: "Leaf", text: "Натуральный органический материал", color: "#4caf7d" },
   { icon: "Zap", text: "Не повреждает металл и лак", color: "#e8c547" },
   { icon: "Shield", text: "Без кремния — безопасен для дыхания", color: "#4a9eff" },
-  { icon: "Recycle", text: "Многоразовый — 3+ цикла работы", color: "#4caf7d" },
+  { icon: "Sprout", text: "Эко и энергоэффективность — 100% bio", color: "#4caf7d" },
 ];
 
 const useCases = [
@@ -97,7 +97,7 @@ const Index = () => {
               Экономия до 40% vs песок и корунд
             </div>
             <div style={{ fontSize: "12px", color: "var(--s2-text-dim)", lineHeight: 1.5 }}>
-              Щадит поверхность · Не оставляет кремния · Работает 3+ цикла
+              Щадит поверхность · Не оставляет кремния · 100% экологичный материал
             </div>
           </div>
 
@@ -107,7 +107,7 @@ const Index = () => {
               { val: "1–1,5", unit: "мм", label: "Фракция" },
               { val: "2,5–3,5", unit: "Моос", label: "Твёрдость" },
               { val: "0%", unit: "", label: "Кремний" },
-              { val: "3+", unit: "цикл.", label: "Ресурс" },
+              { val: "Эко", unit: "100%", label: "bio" },
             ].map((s, i) => (
               <div key={i} style={{ padding: "11px 8px", background: "rgba(10,12,14,0.9)", textAlign: "center" }}>
                 <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "18px", fontWeight: 700, color: "var(--s2-accent)", lineHeight: 1 }}>
