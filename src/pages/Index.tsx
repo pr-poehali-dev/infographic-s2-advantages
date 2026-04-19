@@ -267,11 +267,11 @@ const Index = () => {
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "6px" }}>
-              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--s2-text-dim)", letterSpacing: "0.1em" }}>
+              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--s2-text-dim)", letterSpacing: "0.08em" }}>
                 ГОСТ · ISO 9001
               </div>
-              <div style={{ fontSize: "11px", color: "var(--s2-accent)", border: "1px solid rgba(232,197,71,0.35)", padding: "3px 10px", letterSpacing: "0.12em" }}>
-                Сделано в России
+              <div style={{ fontSize: "10px", color: "var(--s2-accent)", border: "1px solid rgba(232,197,71,0.35)", padding: "3px 8px", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
+                Россия
               </div>
             </div>
           </div>
